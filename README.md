@@ -1,6 +1,6 @@
 # Aşağıdaki sorgu senaryolarını dvdrental örnek veri tabanı üzerinden gerçekleştiriniz.
 
-# Ödev 1
+## Ödev 1
 
 * film tablosunda bulunan title ve description sütunlarındaki verileri sıralayınız.
 ```
@@ -23,7 +23,7 @@ SELECT last_name FROM customer WHERE first_name = 'Mary';
 SELECT * FROM film WHERE length <= 50 AND rental_rate NOT IN (2.99, 4.99);
 ```
 
-# Ödev 2
+## Ödev 2
 
 * film tablosunda bulunan tüm sütunlardaki verileri replacement cost değeri 12.99 dan büyük eşit ve 16.99 küçük olma koşuluyla sıralayınız ( BETWEEN - AND yapısını kullanınız.)
 ```
@@ -38,7 +38,7 @@ SELECT first_name, last_name FROM actor WHERE first_name IN ('Penelope', 'Nick',
 SELECT * FROM film WHERE rental_rate IN (0.99, 2.99, 4.99) AND replacement_cost IN (12.99, 15.99, 28.99);
 ```
 
-# Ödev 3
+## Ödev 3
 
 * country tablosunda bulunan country sütunundaki ülke isimlerinden 'A' karakteri ile başlayıp 'a' karakteri ile sonlananları sıralayınız.
 ```
@@ -57,7 +57,7 @@ SELECT * FROM film WHERE title ILIKE '%T%T%T%T%';
 SELECT * FROM film WHERE title LIKE 'C%' AND length > 90 AND rental_rate = 2.99;
 ```
 
-# Ödev 4
+## Ödev 4
 
 * film tablosunda bulunan replacement_cost sütununda bulunan birbirinden farklı değerleri sıralayınız.
 ```
@@ -80,7 +80,7 @@ SELECT COUNT(*) FROM country WHERE LENGTH(country) = 5;
 SELECT COUNT(*) FROM city WHERE city ILIKE '%r';
 ```
 
-# Ödev 5
+## Ödev 5
 
 * film tablosunda bulunan ve film ismi (title) 'n' karakteri ile biten en uzun (length) 5 filmi sıralayınız.
 ```
@@ -95,7 +95,7 @@ SELECT title, length FROM film WHERE title LIKE '%n' ORDER BY length ASC OFFSET 
 SELECT * FROM customer WHERE store_id = 1 ORDER BY last_name DESC LIMIT 4;
 ```
 
-# Ödev 6
+## Ödev 6
 
 * film tablosunda bulunan rental_rate sütunundaki değerlerin ortalaması nedir?
 ```
@@ -114,17 +114,21 @@ SELECT MAX(length) AS length_movie FROM film WHERE rental_rate = 0.99;
 SELECT COUNT(DISTINCT replacement_cost) FROM film WHERE length > 150;
 ```
 
-# Ödev 7
+## Ödev 7
 
 * film tablosunda bulunan filmleri rating değerlerine göre gruplayınız.
 ```
-
+SELECT rating, COUNT(*) AS film_sayisi FROM film GROUP BY rating;
 ```
 * film tablosunda bulunan filmleri replacement_cost sütununa göre grupladığımızda film sayısı 50 den fazla olan replacement_cost değerini ve karşılık gelen film sayısını sıralayınız.
 ```
-
+SELECT replacement_cost, COUNT(*) AS film_sayisi FROM film GROUP BY replacement_cost HAVING COUNT(*) > 50;
 ```
-* 3 . customer tablosunda bulunan store_id değerlerine karşılık gelen müşteri sayılarını nelerdir? 4. city tablosunda bulunan şehir verilerini country_id sütununa göre gruplandırdıktan sonra en fazla şehir sayısı barındıran country_id bilgisini ve şehir sayısını paylaşınız.
+* customer tablosunda bulunan store_id değerlerine karşılık gelen müşteri sayılarını nelerdir?
 ```
-
+SELECT store_id, COUNT(*) AS musteri_sayisi FROM customer GROUP BY store_id;
+```
+* city tablosunda bulunan şehir verilerini country_id sütununa göre gruplandırdıktan sonra en fazla şehir sayısı barındıran country_id bilgisini ve şehir sayısını paylaşınız.
+```
+SELECT country_id, COUNT(*) AS sehir_sayisi FROM city GROUP BY country_id ORDER BY sehir_sayisi DESC LIMIT 1;
 ```
