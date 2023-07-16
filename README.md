@@ -132,3 +132,39 @@ SELECT store_id, COUNT(*) AS musteri_sayisi FROM customer GROUP BY store_id;
 ```
 SELECT country_id, COUNT(*) AS sehir_sayisi FROM city GROUP BY country_id ORDER BY sehir_sayisi DESC LIMIT 1;
 ```
+
+## Ödev 8
+
+* test veritabanınızda employee isimli sütun bilgileri id(INTEGER), name VARCHAR(50), birthday DATE, email VARCHAR(100) olan bir tablo oluşturalım.
+```
+CREATE TABLE employee (
+  id INTEGER,
+  name VARCHAR(50),
+  birthday DATE,
+  email VARCHAR(100)
+);
+```
+* Oluşturduğumuz employee tablosuna 'Mockaroo' servisini kullanarak 50 adet veri ekleyelim.
+```
+INSERT INTO employee (id, name, birthday, email)
+VALUES
+  (1, 'John Doe', '1990-05-15', 'john.doe@example.com'),
+  (2, 'Jane Smith', '1988-12-03', 'jane.smith@example.com'),
+  ...
+  ;
+```
+* Sütunların her birine göre diğer sütunları güncelleyecek 5 adet UPDATE işlemi yapalım.
+```
+UPDATE employee SET name = 'John Johnson' WHERE id = 1;
+UPDATE employee SET birthday = '1990-01-20' WHERE name = 'Jane Smith';
+UPDATE employee SET name = 'Jane Emily' WHERE id = 2;
+UPDATE employee SET birthday = '1990-01-20' WHERE name = 'John Doe';
+UPDATE employee SET email = 'john_doe@example.com' WHERE name = 'John Doe';
+```
+* Sütunların her birine göre ilgili satırı silecek 5 adet DELETE işlemi yapalım.
+```
+DELETE FROM employee WHERE id = 1;
+DELETE FROM employee WHERE name = 'Jane Smith';
+DELETE FROM employee WHERE email = 'jane.smith@example.com';
+DELETE FROM employee WHERE birthday = '1988-12-03';
+```
